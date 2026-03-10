@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react'
 
 const Design11 = lazy(() => import('./pages/Design11'))
 const Design11Projects = lazy(() => import('./pages/Design11/Projects'))
+const Resume1 = lazy(() => import('./pages/Resume1'))
 
 function Loading() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Design11 />} />
         <Route path="/projects" element={<Design11Projects />} />
+        <Route path="/resume1" element={<Resume1 />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
