@@ -4,42 +4,65 @@ import { ArrowUp } from 'lucide-react'
 
 const DATA = {
   name: 'Harun',
-  role: 'Full-Stack Developer & Indie Builder',
+  role: 'Software Engineer',
   email: 'harunabdi8@gmail.com',
   website: 'harun.tech',
+  linkedin: 'https://www.linkedin.com/in/harun-abdi/',
   location: 'Copenhagen, Denmark',
   summary:
-    'Full-stack developer and indie SaaS builder shipping multiple products simultaneously. Specializing in AI-powered applications, Shopify plugins, and React/React Native. I build fast, iterate with data, and treat every product like a small business.',
+    'Software engineer who\'s built solutions for billion-dollar industries such as BaneDanmark and Landsbyggefonden. Experience in startups and scale-ups.',
   experience: [
     {
-      company: 'Abion',
+      company: 'Omika',
       location: 'Copenhagen',
       role: 'Software Developer',
-      period: '2024–Present',
-      desc: 'Building UDRP AI, a Microsoft Teams bot that helps lawyers draft domain dispute complaints using AI and vector search.',
+      period: 'Nov 2025–Present',
+      desc: 'Building UDRP AI for Abion, a Microsoft Teams bot that helps lawyers draft domain dispute complaints using AI and vector search.',
     },
     {
-      company: 'Indie SaaS Builder',
+      company: 'Coding Pirates',
       location: '',
-      role: 'Founder & Developer',
-      period: '2023–Present',
-      desc: 'Shipping and maintaining multiple products: askpdfs.io, BilligBid, Gift-a-Friend, ExifM, Dagenslands.dk, and more.',
+      role: 'Board Member & Volunteer',
+      period: 'Feb 2025–Present',
+      desc: 'Contributing to the creation of activities for children and young people, where they develop their technological courage and creativity through play and learning with programming and technology.',
     },
-  ],
-  education: [
     {
-      school: 'KEA — Copenhagen School of Design and Technology',
-      degree: 'AP in Computer Science',
-      year: '2022–2024',
+      company: 'Landsbyggefonden',
+      location: '',
+      role: 'Consultant (Software Developer)',
+      period: 'Aug 2025 - Nov 2025',
+      desc: 'Developed solutions for Landsbyggefonden at DCAB, supporting the review and reporting of operations and maintenance data.',
+    },
+    {
+      company: 'Freelance',
+      location: '',
+      role: 'Software Developer',
+      period: 'Feb 2025–Nov 2025',
+      bullets: [
+        { title: 'Dovento', text: 'Sole developer on the web application, building a web alternative to the mobile app for 3,000+ users.' },
+        { title: 'WordWorks', text: 'Sole developer responsible for full-stack development, creating and integrating RAG systems.' },
+      ],
+    },
+    {
+      company: 'Klimator DK',
+      location: '',
+      role: 'Student Software Developer & Intern',
+      period: 'Jun 2023–Dec 2024',
+      bullets: [
+        { text: 'Developed a semi-automatic monitoring system that generates and sends PDFs automatically via email, saving the installation team up to 6 hours of manual work weekly.' },
+        { text: 'Developed a device audit log for tracking metadata changes across 4,000+ devices.' },
+        { text: 'Participated in integrating sensor data through the Danish Environmental Portal\'s IoT platform, helping Banedanmark improve railway monitoring.' },
+      ],
     },
   ],
-  skills: [
-    'React, React Native, Next.js, TypeScript',
-    'Node.js, Python, Prisma, Docker',
-    'OpenAI, Claude API, Voyage AI, Qdrant',
-    'Shopify App Development',
-    'RAG pipelines & prompt engineering',
-  ],
+  education: [],
+  skills: {
+    'Frontend': 'React, React Native, Next.js, TypeScript',
+    'Backend': 'Node.js, Java',
+    'AI Tools': 'Claude Code, Codex',
+    'Infrastructure': 'Azure, Hetzner, Azure Functions, Google Cloud Console',
+    'Databases': 'SQL, PostgreSQL, NoSQL, MongoDB',
+  },
   languages: [
     { lang: 'Danish', level: 'native' },
     { lang: 'English', level: 'fluent' },
@@ -48,21 +71,27 @@ const DATA = {
   projects: [
     {
       name: 'askpdfs.io',
-      desc: 'AI-powered PDF chat SaaS',
+      desc: 'An interactive platform allowing users to upload PDFs and chat with them using LLMs',
       tech: ['Next.js', 'Supabase', 'OpenAI'],
       link: 'https://askpdfs.io',
     },
     {
       name: 'BilligBid',
-      desc: 'Danish grocery deals app',
+      desc: 'An iOS app that displays discounted products in nearby Salling Group stores (Netto, Bilka, Føtex). Designed for people who struggle to make ends meet, offering a much cheaper alternative by allowing them to shop discounted grocery items first',
       tech: ['React Native', 'Node.js'],
       link: null,
     },
     {
       name: 'ExifM',
-      desc: 'Node.js toolkit for EXIF metadata',
+      desc: 'A way to manipulate the exif data on images to change orientation',
       tech: ['Node.js', 'NPM', 'CLI'],
       link: 'https://npmjs.com/package/exifm',
+    },
+    {
+      name: 'Dagenslands.dk',
+      desc: 'A daily guessing game where you guess the country of the day. Built out of a personal interest in geography and a desire to create something simple, free, and quick to play ranging from a few seconds to a couple of minutes. The game has had over 2,000 visitors',
+      tech: ['JavaScript', 'CSS'],
+      link: 'https://dagenslands.dk',
     },
     {
       name: 'UDRP AI',
@@ -72,7 +101,7 @@ const DATA = {
     },
     {
       name: 'Gift-a-Friend',
-      desc: 'Shopify referral & rewards plugin',
+      desc: 'Referral Shopify plugin created for a multimillion DKK shop',
       tech: ['Shopify', 'React', 'Prisma'],
       link: null,
     },
@@ -183,6 +212,16 @@ export default function Resume1() {
                 >
                   <span>{DATA.email}</span>
                   <span>{DATA.website}</span>
+                  <a
+                    href={DATA.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: GREY, textDecoration: 'none' }}
+                    onMouseEnter={(e) => (e.currentTarget.style.textDecoration = 'underline')}
+                    onMouseLeave={(e) => (e.currentTarget.style.textDecoration = 'none')}
+                  >
+                    LinkedIn
+                  </a>
                   <span>{DATA.location}</span>
                 </div>
               </div>
@@ -292,7 +331,7 @@ export default function Resume1() {
                           {exp.location && (
                             <span style={{ fontWeight: 400 }}>
                               {' '}
-                              — {exp.location}
+                              {exp.location}
                             </span>
                           )}
                         </h4>
@@ -314,15 +353,37 @@ export default function Resume1() {
                           {exp.period}
                         </span>
                       </div>
-                      <p
-                        style={{
-                          fontSize: '15px',
-                          lineHeight: 1.65,
-                          color: BLUE,
-                        }}
-                      >
-                        {exp.desc}
-                      </p>
+                      {exp.desc && (
+                        <p
+                          style={{
+                            fontSize: '15px',
+                            lineHeight: 1.65,
+                            color: BLUE,
+                          }}
+                        >
+                          {exp.desc}
+                        </p>
+                      )}
+                      {exp.bullets && (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                          {exp.bullets.map((b, j) => (
+                            <p
+                              key={j}
+                              style={{
+                                fontSize: '15px',
+                                lineHeight: 1.65,
+                                color: BLUE,
+                              }}
+                            >
+                              {b.title && (
+                                <span style={{ fontWeight: 700 }}>{b.title}</span>
+                              )}
+                              {b.title ? <br /> : null}
+                              {b.text}
+                            </p>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -330,48 +391,6 @@ export default function Resume1() {
 
               {/* Right Column — Education + Skills */}
               <div className="w-full md:w-1/2 flex flex-col gap-12">
-                {/* Education */}
-                <motion.section
-                  variants={fadeIn}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                >
-                  <SectionHeading>Education</SectionHeading>
-                  <div className="flex flex-col gap-4">
-                    {DATA.education.map((edu, i) => (
-                      <div key={i}>
-                        <h4
-                          style={{
-                            fontFamily: "'DM Sans', sans-serif",
-                            fontWeight: 700,
-                            fontSize: '16px',
-                            color: BLUE,
-                            marginBottom: '4px',
-                          }}
-                        >
-                          {edu.school}
-                        </h4>
-                        <div
-                          className="flex items-baseline justify-between gap-2"
-                          style={{ fontSize: '14px' }}
-                        >
-                          <span style={{ color: BLUE }}>{edu.degree}</span>
-                          <span
-                            style={{
-                              color: GREY,
-                              fontSize: '13px',
-                              whiteSpace: 'nowrap',
-                            }}
-                          >
-                            {edu.year}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </motion.section>
-
                 {/* Skills */}
                 <motion.section
                   variants={fadeIn}
@@ -380,40 +399,39 @@ export default function Resume1() {
                   viewport={{ once: true }}
                 >
                   <SectionHeading>Skills</SectionHeading>
-                  <ul
+                  <div
                     style={{
-                      listStyle: 'none',
-                      padding: 0,
-                      margin: 0,
                       display: 'flex',
                       flexDirection: 'column',
-                      gap: '8px',
+                      gap: '12px',
                     }}
                   >
-                    {DATA.skills.map((skill, i) => (
-                      <li
-                        key={i}
-                        style={{
-                          fontSize: '15px',
-                          lineHeight: 1.5,
-                          color: BLUE,
-                          paddingLeft: '16px',
-                          position: 'relative',
-                        }}
-                      >
+                    {Object.entries(DATA.skills).map(([category, items]) => (
+                      <div key={category}>
                         <span
                           style={{
-                            position: 'absolute',
-                            left: 0,
-                            color: GREY,
+                            fontSize: '13px',
+                            fontWeight: 700,
+                            color: BLUE,
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.05em',
                           }}
                         >
-                          ·
+                          {category}
                         </span>
-                        {skill}
-                      </li>
+                        <p
+                          style={{
+                            fontSize: '15px',
+                            lineHeight: 1.5,
+                            color: BLUE,
+                            marginTop: '2px',
+                          }}
+                        >
+                          {items}
+                        </p>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </motion.section>
               </div>
             </div>
@@ -468,7 +486,7 @@ export default function Resume1() {
                           color: BLUE,
                         }}
                       >
-                        — {proj.desc}
+                        {proj.desc}
                       </span>
                       {proj.link && (
                         <a
