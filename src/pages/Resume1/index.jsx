@@ -127,7 +127,7 @@ const DATA = {
     {
       name: 'Gift-a-Friend',
       type: 'work',
-      desc: 'Referral Shopify plugin created for a multimillion DKK shop',
+      desc: 'Referral Shopify plugin created for Cana Care, a multimillion DKK shop',
       tech: ['Shopify', 'React', 'Prisma'],
       link: 'https://apps.shopify.com/gift-a-friend',
     },
