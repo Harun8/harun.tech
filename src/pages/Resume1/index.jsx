@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
 
@@ -141,6 +141,16 @@ const DATA = {
 const BLUE = '#3B6B9E'
 const GREY = '#9BA8B5'
 const CREAM = '#F5F0E8'
+
+const TYPE_STYLES = {
+  work: { bg: 'rgba(59, 107, 158, 0.1)', color: BLUE },
+  spinoff: { bg: 'rgba(142, 118, 95, 0.12)', color: '#7A6A52' },
+  personal: { bg: 'rgba(107, 142, 95, 0.12)', color: '#5A7A4A' },
+}
+
+const SKILL_LISTS = Object.fromEntries(
+  Object.entries(DATA.skills).map(([k, v]) => [k, v.split(', ')])
+)
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -294,21 +304,8 @@ function SectionHeading({ children }) {
 }
 
 export default function Resume1() {
-  const topRef = useRef(null)
   const [hoveredExp, setHoveredExp] = useState(null)
   const [selectedProject, setSelectedProject] = useState(null)
-
-  useEffect(() => {
-    const link = document.createElement('link')
-    link.rel = 'stylesheet'
-    link.href =
-      'https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap'
-    document.head.appendChild(link)
-
-    return () => {
-      document.head.removeChild(link)
-    }
-  }, [])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -325,7 +322,6 @@ export default function Resume1() {
       `}</style>
 
       <div
-        ref={topRef}
         style={{
           backgroundColor: CREAM,
           minHeight: '100vh',
@@ -342,7 +338,6 @@ export default function Resume1() {
             paddingBottom: '60px',
           }}
         >
-          <div className="md:px-0" style={{ padding: '0' }}>
             {/* ═══════════ TOP SECTION ═══════════ */}
             <motion.header
               variants={fadeIn}
@@ -574,10 +569,10 @@ export default function Resume1() {
                       gap: '12px',
                     }}
                   >
-                    {Object.entries(DATA.skills).map(([category, items]) => {
-                      const skillList = items.split(', ')
-                      const activeTags = hoveredExp !== null ? (DATA.experience[hoveredExp].tags || []) : []
+                    {(() => {
                       const hasHover = hoveredExp !== null
+                      const activeTags = hasHover ? (DATA.experience[hoveredExp].tags || []) : []
+                      return Object.entries(SKILL_LISTS).map(([category, skillList]) => {
                       const categoryHasMatch = hasHover && skillList.some((s) => activeTags.includes(s))
 
                       return (
@@ -627,7 +622,8 @@ export default function Resume1() {
                           </p>
                         </div>
                       )
-                    })}
+                    })
+                    })()}
                   </div>
                 </motion.section>
 
@@ -660,15 +656,17 @@ export default function Resume1() {
                             <span style={{ color: BLUE, fontWeight: 500 }}>
                               {edu.degree}
                             </span>
-                            <span
-                              style={{
-                                color: GREY,
-                                fontSize: '13px',
-                                whiteSpace: 'nowrap',
-                              }}
-                            >
-                              {edu.period}
-                            </span>
+                            {edu.period && (
+                              <span
+                                style={{
+                                  color: GREY,
+                                  fontSize: '13px',
+                                  whiteSpace: 'nowrap',
+                                }}
+                              >
+                                {edu.period}
+                              </span>
+                            )}
                           </div>
                         </div>
                       ))}
@@ -733,16 +731,8 @@ export default function Resume1() {
                               letterSpacing: '0.06em',
                               padding: '2px 7px',
                               borderRadius: '4px',
-                              backgroundColor: proj.type === 'work'
-                                ? 'rgba(59, 107, 158, 0.1)'
-                                : proj.type === 'spinoff'
-                                  ? 'rgba(142, 118, 95, 0.12)'
-                                  : 'rgba(107, 142, 95, 0.12)',
-                              color: proj.type === 'work'
-                                ? BLUE
-                                : proj.type === 'spinoff'
-                                  ? '#7A6A52'
-                                  : '#5A7A4A',
+                              backgroundColor: TYPE_STYLES[proj.type]?.bg,
+                              color: TYPE_STYLES[proj.type]?.color,
                             }}
                           >
                             {proj.type}
@@ -828,7 +818,6 @@ export default function Resume1() {
                 <ArrowUp size={20} strokeWidth={2} />
               </button>
             </motion.div>
-          </div>
         </div>
       </div>
 
