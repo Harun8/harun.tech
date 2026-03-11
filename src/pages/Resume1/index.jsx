@@ -421,7 +421,7 @@ export default function Resume1() {
                       lineHeight: 0.85,
                       userSelect: 'none',
                       display: 'inline-block',
-                      padding: '20px 15px 0 0',
+                      padding: '10px 15px 0 0',
                     }}
                   >
                     H
