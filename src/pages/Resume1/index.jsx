@@ -10,14 +10,17 @@ const DATA = {
   linkedin: 'https://www.linkedin.com/in/harun-abdi/',
   location: 'Denmark',
   summary:
-    'Software engineer who\'s built solutions for billion-dollar industries such as Banedanmark and Landsbyggefonden. Experience in startups and scale-ups.',
+    'Software engineer with experience building solutions for clients like Banedanmark and Landsbyggefonden. Background in startups and scale-ups.',
   experience: [
     {
       company: 'Omika',
       location: 'Copenhagen',
-      role: 'Software Developer',
+      role: 'Software Engineer',
       period: 'Nov 2025–Present',
-      desc: 'Designed and built an AI assistant that helps brand-protection lawyers draft UDRP domain name dispute complaints end-to-end. A Microsoft Teams bot conducts a structured legal interview, automatically looks up domain registration data (WHOIS/RDAP), retrieves relevant precedent complaints via vector search (RAG), validates output against legal formatting rules, and generates professionally formatted DOCX filings.',
+      bullets: [
+        { text: 'Built an AI-powered Microsoft Teams bot that drafts UDRP domain dispute complaints end-to-end using RAG, WHOIS lookups, and legal formatting validation.' },
+        { text: 'Built a full-stack matching platform connecting Danish companies with certified marketing agencies using a hybrid RAG pipeline with contextual retrieval, combining vector search, BM25, and LLM scoring. Delivered accurate recommendations in under **15 seconds**.' },
+      ],
       tags: ['TypeScript', 'LangGraph', 'LangChain', 'React', 'Node.js', 'PostgreSQL', 'Qdrant', 'Prisma', 'Azure', 'Hetzner'],
     },
     {
@@ -31,15 +34,15 @@ const DATA = {
     {
       company: 'Landsbyggefonden',
       location: '',
-      role: 'Consultant (Software Developer)',
+      role: 'Consultant (Software Engineer)',
       period: 'Aug 2025 - Nov 2025',
       desc: 'Developed solutions for Landsbyggefonden at DCAB, supporting the review and reporting of operations and maintenance data.',
-      tags: ['MySQL', 'C#', 'Azure DevOps'],
+      tags: ['MSSQL', 'C#', 'Azure DevOps'],
     },
     {
       company: 'Freelance',
       location: '',
-      role: 'Freelance Software Developer',
+      role: 'Freelance Software Engineer',
       period: 'Feb 2025–Nov 2025',
       bullets: [
         { title: 'Dovento', text: 'Sole developer on the web application, building a web alternative to the mobile app for **3,000+** users.' },
@@ -50,7 +53,7 @@ const DATA = {
     {
       company: 'Klimator DK',
       location: '',
-      role: 'Software Developer',
+      role: 'Software Engineer',
       period: 'Jun 2023–Dec 2024',
       bullets: [
         { text: 'Developed a semi-automatic monitoring system that generates and sends PDFs automatically via email, saving the installation team up to **6 hours** of manual work weekly.' },
@@ -71,7 +74,7 @@ const DATA = {
     'Backend': 'Node.js, C#, Python',
     'AI Tools': 'Claude Code, Codex',
     'Infrastructure': 'Azure, Hetzner, Azure Functions, Azure DevOps, Google Cloud Console, MQTT, IoT',
-    'Databases': 'SQL, PostgreSQL, MySQL, NoSQL, MongoDB',
+    'Databases': 'SQL, PostgreSQL, MSSQL, NoSQL, MongoDB',
   },
   languages: [
     { lang: 'Danish', level: 'native' },
