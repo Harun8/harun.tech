@@ -90,7 +90,7 @@ const DATA = {
       link: null,
     },
     {
-      name: 'askpdfs.io',
+      name: 'AskPDFs.io',
       type: 'personal',
       desc: 'An interactive platform allowing users to upload PDFs and chat with them using LLMs',
       tech: ['Next.js', 'Supabase', 'OpenAI'],
@@ -111,11 +111,11 @@ const DATA = {
       link: 'https://npmjs.com/package/exifm',
     },
     {
-      name: 'Dagenslands.dk',
+      name: 'Dagensland.dk',
       type: 'personal',
       desc: 'A daily guessing game where you guess the country of the day. Built out of a personal interest in geography and a desire to create something simple, free, and quick to play ranging from a few seconds to a couple of minutes. The game has had over **2,000 visitors**',
       tech: ['JavaScript', 'CSS'],
-      link: 'https://dagenslands.dk',
+      link: 'https://dagensland.dk',
     },
     {
       name: 'UDRP AI',
@@ -724,7 +724,16 @@ export default function Resume1() {
                           gap: '8px',
                         }}
                       >
-                        {proj.name}
+                        {proj.link ? (
+                          <a
+                            href={proj.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: BLUE, textDecoration: 'none' }}
+                          >
+                            {proj.name}
+                          </a>
+                        ) : proj.name}
                         {proj.type && (
                           <span
                             style={{
