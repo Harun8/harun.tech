@@ -409,7 +409,7 @@ export default function Resume1() {
                 {/* Mobile monogram — smaller */}
                 <div
                   className="flex md:hidden items-center justify-start"
-                  style={{ marginBottom: '-8px' }}
+                  style={{ marginBottom: '-8px', overflow: 'visible' }}
                 >
                   <span
                     style={{
@@ -420,6 +420,8 @@ export default function Resume1() {
                       opacity: 0.12,
                       lineHeight: 0.85,
                       userSelect: 'none',
+                      display: 'inline-block',
+                      padding: '10px 15px 0 0',
                     }}
                   >
                     H
