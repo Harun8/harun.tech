@@ -556,7 +556,7 @@ export default function Resume1() {
               </motion.section>
 
               {/* Right Column — Education + Skills */}
-              <div className="w-full md:w-1/2 flex flex-col gap-12">
+              <div className="w-full md:w-1/2 flex flex-col gap-12 md:sticky md:top-[60px] md:self-start">
                 {/* Skills */}
                 <motion.section
                   variants={fadeIn}
