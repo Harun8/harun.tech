@@ -347,6 +347,7 @@ export default function Resume1() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
+              style={{ overflow: 'visible' }}
             >
               {/* Row 1: Role title (left) + Contact info (right) */}
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 mb-6">
