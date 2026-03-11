@@ -7,7 +7,7 @@ const fade = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, delay: i * 0.15, ease: 'easeOut' },
+    transition: { duration: 0.8, delay: i * 0.15, ease: 'easeOut' as const },
   }),
 }
 
