@@ -84,8 +84,8 @@ const DATA = {
     {
       name: 'CleverCost',
       type: 'work',
-      desc: 'Financial document processing API. Brought an AI-powered invoice processing system to production readiness.\n\nImproved extraction accuracy from ~80% to 99.9% on invoices with **1,000+** line items. Eliminated batch failures and built a chunked extraction pipeline for documents up to 45 pages.\n\nTook the system from "client rejected delivery" to production use within **3 weeks**',
-      details: 'Brought an AI-powered invoice processing system to production readiness after client acceptance testing revealed critical data loss and reliability issues. The system extracts structured financial data from scanned invoices using OCR and large language models.\n\n• Resolved systemic data loss on multi-page documents (4+ pages), improving extraction accuracy from ~80% to 99.9% on invoices with 1,000+ line items — verified against manually audited ground truth\n• Eliminated batch processing failures where documents stalled indefinitely in queue, enabling reliable concurrent uploads\n• Built chunked extraction pipeline for large documents (up to 45 pages), with intelligent deduplication that preserves legitimate repeat entries\n• Added OCR caching, native PDF text extraction, and retry mechanisms — reducing processing costs and improving reliability against upstream API failures\n• Took the system from "client rejected delivery" to production use within 3 weeks',
+      desc: 'Financial document processing API. Brought an AI-powered invoice processing system to production readiness.\n\nImproved extraction accuracy from ~60% to 95% on invoices with **1,000+** line items. Eliminated batch failures and built a chunked extraction pipeline for documents up to 45 pages.\n\nTook the system from "client rejected delivery" to production use within **3 weeks**',
+      details: 'Brought an AI-powered invoice processing system to production readiness after client acceptance testing revealed critical data loss and reliability issues. The system extracts structured financial data from scanned invoices using OCR and large language models.\n\n• Resolved systemic data loss on multi-page documents (4+ pages), improving extraction accuracy from ~60% to 95% on invoices with 1,000+ line items — verified against manually audited ground truth\n• Eliminated batch processing failures where documents stalled indefinitely in queue, enabling reliable concurrent uploads\n• Built chunked extraction pipeline for large documents (up to 45 pages), with intelligent deduplication that preserves legitimate repeat entries\n• Added OCR caching, native PDF text extraction, and retry mechanisms — reducing processing costs and improving reliability against upstream API failures\n• Took the system from "client rejected delivery" to production use within 3 weeks',
       tech: ['Python', 'FastAPI', 'Celery', 'PostgreSQL', 'LLM', 'OCR'],
       link: null,
     },
@@ -134,7 +134,7 @@ const DATA = {
     {
       name: 'FTP Security with inotify',
       type: 'work',
-      desc: 'Developed a solution to enhance FTP security for legacy systems using inotify on Linux for secure, real-time file monitoring. Wrote an article about the approach on Medium',
+      desc: 'Developed a solution to enhance FTP security for legacy systems using inotify on Linux for secure, real-time file monitoring. [Wrote an article about the approach on Medium](https://medium.com/@harunabdi8/mitigating-ftp-security-vulnerabilities-with-inotify-on-linux-5bb186a3c358)',
       tech: ['Linux', 'inotify', 'FTP', 'Security'],
       link: 'https://medium.com/@harunabdi8/mitigating-ftp-security-vulnerabilities-with-inotify-on-linux-5bb186a3c358',
     },
@@ -168,10 +168,14 @@ function renderText(text) {
   if (!text) return null
   const paragraphs = text.split('\n\n')
   return paragraphs.map((para, pi) => {
-    const parts = para.split(/(\*\*.*?\*\*)/)
+    const parts = para.split(/(\*\*.*?\*\*|\[.*?\]\(.*?\))/)
     const rendered = parts.map((part, i) => {
       if (part.startsWith('**') && part.endsWith('**')) {
         return <span key={i} style={{ fontWeight: 700 }}>{part.slice(2, -2)}</span>
+      }
+      const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/)
+      if (linkMatch) {
+        return <a key={i} href={linkMatch[2]} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline' }}>{linkMatch[1]}</a>
       }
       return part
     })
