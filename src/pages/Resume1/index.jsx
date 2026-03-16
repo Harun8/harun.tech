@@ -21,7 +21,7 @@ const DATA = {
         { text: 'Built an AI-powered Microsoft Teams bot that drafts UDRP domain dispute complaints end-to-end using RAG, WHOIS lookups, and legal formatting validation.' },
         { text: 'Built a full-stack matching platform connecting Danish companies with certified marketing agencies using a hybrid RAG pipeline with contextual retrieval, combining vector search, BM25, and LLM scoring. Delivered accurate recommendations in under **15 seconds**.' },
       ],
-      tags: ['TypeScript', 'LangGraph', 'LangChain', 'React', 'Node.js', 'PostgreSQL', 'Qdrant', 'Prisma', 'Azure', 'Hetzner'],
+      tags: ['TypeScript', 'Python', 'LangGraph', 'LangChain', 'LangSmith', 'RAG', 'OCR', 'Prompt Engineering', 'LLM Orchestration', 'React', 'Node.js', 'Bun', 'PostgreSQL', 'Supabase', 'Turso', 'Redis', 'Qdrant', 'Prisma', 'Azure', 'Hetzner', 'Nginx'],
     },
     {
       company: 'Coding Pirates',
@@ -48,7 +48,7 @@ const DATA = {
         { title: 'Dovento', text: 'Sole developer on the web application, building a web alternative to the mobile app for **3,000+** users.' },
         { title: 'WordWorks', text: 'Led a team of 2 interns and two developers, responsible for full-stack development, creating and integrating RAG systems.' },
       ],
-      tags: ['Node.js', 'React', 'Next.js', 'MongoDB', 'PostgreSQL'],
+      tags: ['Node.js', 'React', 'Next.js', 'MongoDB', 'PostgreSQL', 'Supabase', 'RAG', 'OCR', 'LangChain', 'LangGraph', 'LangSmith', 'Prompt Engineering', 'LLM Orchestration'],
     },
     {
       company: 'Klimator DK',
@@ -60,7 +60,7 @@ const DATA = {
         { text: 'Developed a device audit log for tracking metadata changes across **4,000+** devices.' },
         { text: 'Participated in integrating sensor data through the Danish Environmental Portal\'s IoT platform, helping Banedanmark improve railway monitoring.' },
       ],
-      tags: ['Node.js', 'JavaScript', 'Azure', 'Azure Functions', 'MongoDB', 'MQTT', 'IoT'],
+      tags: ['Node.js', 'JavaScript', 'Azure', 'Azure Functions', 'MongoDB', 'Redis', 'MQTT', 'IoT', 'OCR'],
     },
   ],
   education: [
@@ -70,11 +70,11 @@ const DATA = {
     },
   ],
   skills: {
-    'Frontend': 'React, React Native, Next.js, TypeScript, JavaScript',
-    'Backend': 'Node.js, C#, Python',
-    'AI Tools': 'Claude Code, Codex',
-    'Infrastructure': 'Azure, Hetzner, Azure Functions, Azure DevOps, Google Cloud Console, MQTT, IoT',
-    'Databases': 'SQL, PostgreSQL, MSSQL, NoSQL, MongoDB',
+    'Frontend': 'React, React Native, Next.js, TypeScript, JavaScript, Tailwind CSS',
+    'Backend': 'Node.js, Bun, Python, C#, REST APIs',
+    'AI/ML': 'RAG, OCR, LangChain, LangGraph, LangSmith, Prompt Engineering, LLM Orchestration',
+    'Infrastructure': 'Azure, Hetzner, Nginx, Azure Functions, Google Cloud',
+    'Databases': 'PostgreSQL, Supabase, Turso, Redis, MongoDB, MSSQL',
   },
   languages: [
     { lang: 'Danish', level: 'native' },
@@ -85,15 +85,15 @@ const DATA = {
       name: 'CleverCost',
       type: 'work',
       desc: 'Financial document processing API. Brought an AI-powered invoice processing system to production readiness.\n\nImproved extraction accuracy from ~60% to 95% on invoices with **1,000+** line items. Eliminated batch failures and built a chunked extraction pipeline for documents up to 45 pages.\n\nTook the system from "client rejected delivery" to production use within **3 weeks**',
-      details: 'Brought an AI-powered invoice processing system to production readiness after client acceptance testing revealed critical data loss and reliability issues. The system extracts structured financial data from scanned invoices using OCR and large language models.\n\n• Resolved systemic data loss on multi-page documents (4+ pages), improving extraction accuracy from ~60% to 95% on invoices with 1,000+ line items — verified against manually audited ground truth\n• Eliminated batch processing failures where documents stalled indefinitely in queue, enabling reliable concurrent uploads\n• Built chunked extraction pipeline for large documents (up to 45 pages), with intelligent deduplication that preserves legitimate repeat entries\n• Added OCR caching, native PDF text extraction, and retry mechanisms — reducing processing costs and improving reliability against upstream API failures\n• Took the system from "client rejected delivery" to production use within 3 weeks',
       tech: ['Python', 'FastAPI', 'Celery', 'PostgreSQL', 'LLM', 'OCR'],
       link: null,
     },
     {
       name: 'AskPDFs.io',
       type: 'personal',
-      desc: 'An interactive platform allowing users to upload PDFs and chat with them using LLMs',
-      tech: ['Next.js', 'Supabase', 'OpenAI'],
+      desc: 'An interactive platform allowing users to upload PDFs and chat with them using LLMs. Originally built during university, recently underwent a full architectural overhaul. Read more for details.',
+      details: 'PDF chat platform originally built during university with Next.js, Supabase, and basic OpenAI vector search. Recently underwent a full architectural overhaul.\n\n• **Separated architecture**: moved from a Next.js monolith to a Vite + React 19 frontend and Python 3.12 + FastAPI backend, enabling independent scaling and access to Python\'s superior AI/ML ecosystem\n• **Hybrid RAG pipeline**: replaced single-vector retrieval with dense search + BM25 keyword search (based on a technical paper I read) fused via Reciprocal Rank Fusion, followed by Cohere Rerank 3.5, improving retrieval quality by 20-48%\n• **Tiered PDF parsing**: auto-escalation from pymupdf4llm (fast path) to IBM Docling (complex layouts) to LlamaParse (scanned docs), replacing a single-parser approach\n• **Contextual chunking**: structure-aware splitting with LLM-generated context prefixes and parent-child indexing for better retrieval precision\n• **Multi-LLM support**: Claude, GPT, and open-source models via OpenRouter, replacing single-provider OpenAI lock-in\n• **Production infrastructure**: Inngest step-function job queue, Cloudflare R2 storage, Stripe metered billing, Better Auth, and Sentry + Axiom observability',
+      tech: ['React', 'Python', 'FastAPI', 'PostgreSQL', 'pgvector', 'RAG', 'LLM'],
       link: 'https://askpdfs.io',
     },
     {
@@ -120,7 +120,7 @@ const DATA = {
     {
       name: 'UDRP AI',
       type: 'work',
-      desc: 'AI-powered legal drafting platform for domain name dispute lawyers. Multi-stage LangGraph agent conducts structured interviews, performs WHOIS lookups, retrieves precedent cases via RAG, and generates court-ready DOCX complaints — delivered through a Microsoft Teams bot.\n\nBuilt with AES-256-GCM encryption at rest, full PostgreSQL audit trail, and a React admin dashboard for cost monitoring and document ingestion.',
+      desc: 'AI-powered legal drafting platform for domain name dispute lawyers. Multi-stage LangGraph agent conducts structured interviews, performs WHOIS lookups, retrieves precedent cases via RAG, and generates court-ready DOCX complaints, delivered through a Microsoft Teams bot.\n\nBuilt with AES-256-GCM encryption at rest, full PostgreSQL audit trail, and a React admin dashboard for cost monitoring and document ingestion.',
       tech: ['TypeScript', 'LangGraph', 'MS Teams', 'Qdrant', 'PostgreSQL', 'React'],
       link: 'https://abion.com',
     },
@@ -164,25 +164,44 @@ const fadeIn = {
   },
 }
 
+function renderInline(text) {
+  const parts = text.split(/(\*\*.*?\*\*|\[.*?\]\(.*?\))/)
+  return parts.map((part, i) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <span key={i} style={{ fontWeight: 700 }}>{part.slice(2, -2)}</span>
+    }
+    const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/)
+    if (linkMatch) {
+      return <a key={i} href={linkMatch[2]} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline' }}>{linkMatch[1]}</a>
+    }
+    return part
+  })
+}
+
 function renderText(text) {
   if (!text) return null
   const paragraphs = text.split('\n\n')
   return paragraphs.map((para, pi) => {
-    const parts = para.split(/(\*\*.*?\*\*|\[.*?\]\(.*?\))/)
-    const rendered = parts.map((part, i) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
-        return <span key={i} style={{ fontWeight: 700 }}>{part.slice(2, -2)}</span>
-      }
-      const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/)
-      if (linkMatch) {
-        return <a key={i} href={linkMatch[2]} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline' }}>{linkMatch[1]}</a>
-      }
-      return part
-    })
+    const lines = para.split('\n')
+    const bullets = lines.filter((l) => l.startsWith('• '))
+    if (bullets.length > 0) {
+      const intro = lines.filter((l) => !l.startsWith('• '))
+      return (
+        <span key={pi}>
+          {pi > 0 && <><br /><br /></>}
+          {intro.length > 0 && <>{renderInline(intro.join(' '))}<br /><br /></>}
+          <ul style={{ margin: 0, paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {bullets.map((b, bi) => (
+              <li key={bi} style={{ paddingLeft: '4px' }}>{renderInline(b.slice(2))}</li>
+            ))}
+          </ul>
+        </span>
+      )
+    }
     return (
       <span key={pi}>
         {pi > 0 && <><br /><br /></>}
-        {rendered}
+        {renderInline(para)}
       </span>
     )
   })
@@ -782,30 +801,32 @@ export default function Resume1() {
                           </span>
                         ))}
                       </div>
-                      <button
-                        onClick={() => setSelectedProject(proj)}
-                        style={{
-                          background: 'none',
-                          border: 'none',
-                          cursor: 'pointer',
-                          fontSize: '12px',
-                          color: BLUE,
-                          opacity: 0.6,
-                          padding: 0,
-                          textDecoration: 'none',
-                          whiteSpace: 'nowrap',
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.opacity = '1'
-                          e.currentTarget.style.textDecoration = 'underline'
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.opacity = '0.6'
-                          e.currentTarget.style.textDecoration = 'none'
-                        }}
-                      >
-                        More info
-                      </button>
+                      {proj.details && (
+                        <button
+                          onClick={() => setSelectedProject(proj)}
+                          className="pulse-glow"
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            fontSize: '12px',
+                            color: BLUE,
+                            padding: '2px 8px',
+                            borderRadius: '4px',
+                            whiteSpace: 'nowrap',
+                            backgroundColor: 'rgba(59, 107, 158, 0.08)',
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = 'rgba(59, 107, 158, 0.15)'
+                            e.currentTarget.classList.remove('pulse-glow')
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = 'rgba(59, 107, 158, 0.08)'
+                          }}
+                        >
+                          More info
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))}

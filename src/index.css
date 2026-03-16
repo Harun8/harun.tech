@@ -271,6 +271,16 @@
   100% { transform: scale(1); opacity: 1; }
 }
 
+/* Pulse glow for "More info" buttons */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; background-color: rgba(59, 107, 158, 0.15); }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
