@@ -1,72 +1,41 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
+import { translations } from './i18n'
 
 const DATA = {
   name: 'Harun',
-  role: 'Software Engineer',
   email: 'harunabdi8@gmail.com',
   website: 'harun.tech',
   linkedin: 'https://www.linkedin.com/in/harun-abdi/',
-  location: 'Denmark',
-  summary:
-    'Software engineer with experience building solutions for clients like Banedanmark and Landsbyggefonden. Background in startups and scale-ups.',
   experience: [
     {
       company: 'Omika',
       location: 'Copenhagen',
-      role: 'Software Engineer',
-      period: 'Nov 2025–Present',
-      bullets: [
-        { text: 'Built an AI-powered Microsoft Teams bot that drafts UDRP domain dispute complaints end-to-end using RAG, WHOIS lookups, and legal formatting validation.' },
-        { text: 'Built a full-stack matching platform connecting Danish companies with certified marketing agencies using a hybrid RAG pipeline with contextual retrieval, combining vector search, BM25, and LLM scoring. Delivered accurate recommendations in under **15 seconds**.' },
-      ],
+      bulletTitles: [null, null],
       tags: ['TypeScript', 'Python', 'LangGraph', 'LangChain', 'LangSmith', 'RAG', 'OCR', 'Prompt Engineering', 'LLM Orchestration', 'React', 'Node.js', 'Bun', 'PostgreSQL', 'Supabase', 'Turso', 'Redis', 'Qdrant', 'Prisma', 'Azure', 'Hetzner', 'Nginx'],
     },
     {
       company: 'Coding Pirates',
       location: '',
-      role: 'Board Member & Volunteer',
-      period: 'Feb 2025–Present',
-      desc: 'Contributing to the creation of activities for children and young people, where they develop their technological courage and creativity through play and learning with programming and technology.',
       tags: ['Python'],
     },
     {
       company: 'Landsbyggefonden',
       location: '',
-      role: 'Consultant (Software Engineer)',
-      period: 'Aug 2025 - Nov 2025',
-      desc: 'Developed solutions for Landsbyggefonden at DCAB, supporting the review and reporting of operations and maintenance data.',
       tags: ['MSSQL', 'C#', 'Azure DevOps'],
     },
     {
       company: 'Freelance',
       location: '',
-      role: 'Freelance Software Engineer',
-      period: 'Feb 2025–Nov 2025',
-      bullets: [
-        { title: 'Dovento', text: 'Sole developer on the web application, building a web alternative to the mobile app for **3,000+** users.' },
-        { title: 'WordWorks', text: 'Led a team of 2 interns and two developers, responsible for full-stack development, creating and integrating RAG systems.' },
-      ],
+      bulletTitles: ['Dovento', 'WordWorks'],
       tags: ['Node.js', 'React', 'Next.js', 'MongoDB', 'PostgreSQL', 'Supabase', 'RAG', 'OCR', 'LangChain', 'LangGraph', 'LangSmith', 'Prompt Engineering', 'LLM Orchestration'],
     },
     {
       company: 'Klimator DK',
       location: '',
-      role: 'Software Engineer',
-      period: 'Jun 2023–Dec 2024',
-      bullets: [
-        { text: 'Developed a semi-automatic monitoring system that generates and sends PDFs automatically via email, saving the installation team up to **6 hours** of manual work weekly.' },
-        { text: 'Developed a device audit log for tracking metadata changes across **4,000+** devices.' },
-        { text: 'Participated in integrating sensor data through the Danish Environmental Portal\'s IoT platform, helping Banedanmark improve railway monitoring.' },
-      ],
+      bulletTitles: [null, null, null],
       tags: ['Node.js', 'JavaScript', 'Azure', 'Azure Functions', 'MongoDB', 'Redis', 'MQTT', 'IoT', 'OCR'],
-    },
-  ],
-  education: [
-    {
-      school: 'Southern University of Denmark',
-      degree: 'Software Technology',
     },
   ],
   skills: {
@@ -77,64 +46,56 @@ const DATA = {
     'Databases': 'PostgreSQL, Supabase, Turso, Redis, MongoDB, MSSQL',
   },
   languages: [
-    { lang: 'Danish', level: 'native' },
-    { lang: 'English', level: 'fluent' },
+    { lang: 'Danish' },
+    { lang: 'English' },
   ],
   projects: [
     {
       name: 'CleverCost',
       type: 'work',
-      desc: 'Financial document processing API. Brought an AI-powered invoice processing system to production readiness.\n\nImproved extraction accuracy from ~60% to 95% on invoices with **1,000+** line items. Eliminated batch failures and built a chunked extraction pipeline for documents up to 45 pages.\n\nTook the system from "client rejected delivery" to production use within **3 weeks**',
       tech: ['Python', 'FastAPI', 'Celery', 'PostgreSQL', 'LLM', 'OCR'],
       link: null,
     },
     {
       name: 'AskPDFs.io',
       type: 'personal',
-      desc: 'An interactive platform allowing users to upload PDFs and chat with them using LLMs. Originally built during university, recently underwent a full architectural overhaul. Read more for details.',
-      details: 'PDF chat platform originally built during university with Next.js, Supabase, and basic OpenAI vector search. Recently underwent a full architectural overhaul.\n\n• **Separated architecture**: moved from a Next.js monolith to a Vite + React 19 frontend and Python 3.12 + FastAPI backend, enabling independent scaling and access to Python\'s superior AI/ML ecosystem\n• **Hybrid RAG pipeline**: replaced single-vector retrieval with dense search + BM25 keyword search (based on a technical paper I read) fused via Reciprocal Rank Fusion, followed by Cohere Rerank 3.5, improving retrieval quality by 20-48%\n• **Tiered PDF parsing**: auto-escalation from pymupdf4llm (fast path) to IBM Docling (complex layouts) to LlamaParse (scanned docs), replacing a single-parser approach\n• **Contextual chunking**: structure-aware splitting with LLM-generated context prefixes and parent-child indexing for better retrieval precision\n• **Multi-LLM support**: Claude, GPT, and open-source models via OpenRouter, replacing single-provider OpenAI lock-in\n• **Production infrastructure**: Inngest step-function job queue, Cloudflare R2 storage, Stripe metered billing, Better Auth, and Sentry + Axiom observability',
+      hasDetails: true,
       tech: ['React', 'Python', 'FastAPI', 'PostgreSQL', 'pgvector', 'RAG', 'LLM'],
       link: 'https://askpdfs.io',
     },
     {
       name: 'BilligBid',
       type: 'personal',
-      desc: 'An iOS app that displays discounted products in nearby Salling Group stores (Netto, Bilka, Føtex). Designed for people who struggle to make ends meet, offering a much cheaper alternative by allowing them to shop discounted grocery items first',
       tech: ['React Native', 'Node.js'],
       link: 'https://apps.apple.com/us/app/billigbid/id6756362285',
     },
     {
       name: 'ExifM',
       type: 'spinoff',
-      desc: 'A way to manipulate the exif data on images to change orientation',
       tech: ['Node.js', 'NPM', 'CLI'],
       link: 'https://npmjs.com/package/exifm',
     },
     {
       name: 'Dagensland.dk',
       type: 'personal',
-      desc: 'A daily guessing game where you guess the country of the day. Built out of a personal interest in geography and a desire to create something simple, free, and quick to play ranging from a few seconds to a couple of minutes. The game has had over **2,000 visitors**',
       tech: ['JavaScript', 'CSS'],
       link: 'https://dagensland.dk',
     },
     {
       name: 'UDRP AI',
       type: 'work',
-      desc: 'AI-powered legal drafting platform for domain name dispute lawyers. Multi-stage LangGraph agent conducts structured interviews, performs WHOIS lookups, retrieves precedent cases via RAG, and generates court-ready DOCX complaints, delivered through a Microsoft Teams bot.\n\nBuilt with AES-256-GCM encryption at rest, full PostgreSQL audit trail, and a React admin dashboard for cost monitoring and document ingestion.',
       tech: ['TypeScript', 'LangGraph', 'MS Teams', 'Qdrant', 'PostgreSQL', 'React'],
       link: 'https://abion.com',
     },
     {
       name: 'Gift-a-Friend',
       type: 'work',
-      desc: 'Referral Shopify plugin created for Cana Care, a multimillion DKK shop',
       tech: ['Shopify', 'React', 'Prisma'],
       link: 'https://apps.shopify.com/gift-a-friend',
     },
     {
       name: 'FTP Security with inotify',
       type: 'work',
-      desc: 'Developed a solution to enhance FTP security for legacy systems using inotify on Linux for secure, real-time file monitoring. [Wrote an article about the approach on Medium](https://medium.com/@harunabdi8/mitigating-ftp-security-vulnerabilities-with-inotify-on-linux-5bb186a3c358)',
       tech: ['Linux', 'inotify', 'FTP', 'Security'],
       link: 'https://medium.com/@harunabdi8/mitigating-ftp-security-vulnerabilities-with-inotify-on-linux-5bb186a3c358',
     },
@@ -207,7 +168,9 @@ function renderText(text) {
   })
 }
 
-function ProjectModal({ project, onClose }) {
+function ProjectModal({ project, onClose, t, projIndex }) {
+  const details = t(`projDetails${projIndex}`)
+  const desc = t(`projDesc${projIndex}`)
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -277,10 +240,10 @@ function ProjectModal({ project, onClose }) {
             marginBottom: '20px',
           }}
         >
-          {renderText(project.details || project.desc)}
+          {renderText(details || desc)}
         </p>
         <div className="flex flex-wrap gap-2" style={{ marginBottom: '20px' }}>
-          {project.tech.map((t, j) => (
+          {project.tech.map((techItem, j) => (
             <span
               key={j}
               style={{
@@ -292,7 +255,7 @@ function ProjectModal({ project, onClose }) {
                 letterSpacing: '0.03em',
               }}
             >
-              {t}
+              {techItem}
             </span>
           ))}
         </div>
@@ -303,7 +266,7 @@ function ProjectModal({ project, onClose }) {
             rel="noopener noreferrer"
             style={{ fontSize: '14px', color: BLUE, textDecoration: 'underline' }}
           >
-            Visit project
+            {t('visitProject')}
           </a>
         )}
       </motion.div>
@@ -332,6 +295,14 @@ function SectionHeading({ children }) {
 export default function Resume1() {
   const [hoveredExp, setHoveredExp] = useState(null)
   const [selectedProject, setSelectedProject] = useState(null)
+  const [lang, setLang] = useState(() => localStorage.getItem('lang') || 'en')
+
+  const t = (key) => translations[lang][key] || key
+
+  useEffect(() => {
+    document.documentElement.lang = lang
+    localStorage.setItem('lang', lang)
+  }, [lang])
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -382,7 +353,7 @@ export default function Resume1() {
                     lineHeight: 1.2,
                   }}
                 >
-                  {DATA.role}
+                  {t('role')}
                 </p>
                 <div
                   className="flex flex-col md:items-end gap-0.5"
@@ -400,7 +371,40 @@ export default function Resume1() {
                   >
                     LinkedIn
                   </a>
-                  <span>{DATA.location}</span>
+                  <span>{t('location')}</span>
+                  <div className="no-print flex gap-1" style={{ marginTop: '4px', fontSize: '13px' }}>
+                    <button
+                      onClick={() => setLang('en')}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        padding: '2px 4px',
+                        color: lang === 'en' ? BLUE : GREY,
+                        fontWeight: lang === 'en' ? 700 : 400,
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: '13px',
+                      }}
+                    >
+                      EN
+                    </button>
+                    <span style={{ color: GREY }}>/</span>
+                    <button
+                      onClick={() => setLang('da')}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        padding: '2px 4px',
+                        color: lang === 'da' ? BLUE : GREY,
+                        fontWeight: lang === 'da' ? 700 : 400,
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: '13px',
+                      }}
+                    >
+                      DA
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -478,7 +482,7 @@ export default function Resume1() {
                       color: BLUE,
                     }}
                   >
-                    {DATA.summary}
+                    {t('summary')}
                   </p>
                 </div>
               </div>
@@ -494,7 +498,7 @@ export default function Resume1() {
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                <SectionHeading>Work Experience</SectionHeading>
+                <SectionHeading>{t('workExperience')}</SectionHeading>
                 <div className="flex flex-col gap-8">
                   {DATA.experience.map((exp, i) => (
                     <div
@@ -533,7 +537,7 @@ export default function Resume1() {
                         style={{ fontSize: '14px' }}
                       >
                         <span style={{ color: BLUE, fontWeight: 500 }}>
-                          {exp.role}
+                          {t(`expRole${i}`)}
                         </span>
                         <span
                           style={{
@@ -542,10 +546,10 @@ export default function Resume1() {
                             whiteSpace: 'nowrap',
                           }}
                         >
-                          {exp.period}
+                          {t(`expPeriod${i}`)}
                         </span>
                       </div>
-                      {exp.desc && (
+                      {t(`expDesc${i}`) !== `expDesc${i}` && (
                         <p
                           style={{
                             fontSize: '15px',
@@ -553,12 +557,12 @@ export default function Resume1() {
                             color: BLUE,
                           }}
                         >
-                          {exp.desc}
+                          {t(`expDesc${i}`)}
                         </p>
                       )}
-                      {exp.bullets && (
+                      {exp.bulletTitles && (
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                          {exp.bullets.map((b, j) => (
+                          {exp.bulletTitles.map((title, j) => (
                             <p
                               key={j}
                               style={{
@@ -567,11 +571,11 @@ export default function Resume1() {
                                 color: BLUE,
                               }}
                             >
-                              {b.title && (
-                                <span style={{ fontWeight: 700 }}>{b.title}</span>
+                              {title && (
+                                <span style={{ fontWeight: 700 }}>{title}</span>
                               )}
-                              {b.title ? <br /> : null}
-                              {renderText(b.text)}
+                              {title ? <br /> : null}
+                              {renderText(t(`expBullet${i}_${j}`))}
                             </p>
                           ))}
                         </div>
@@ -590,7 +594,7 @@ export default function Resume1() {
                   whileInView="visible"
                   viewport={{ once: true }}
                 >
-                  <SectionHeading>Skills</SectionHeading>
+                  <SectionHeading>{t('skills')}</SectionHeading>
                   <div
                     style={{
                       display: 'flex',
@@ -657,16 +661,16 @@ export default function Resume1() {
                 </motion.section>
 
                 {/* Education */}
-                {DATA.education.length > 0 && (
+                {(
                   <motion.section
                     variants={fadeIn}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                   >
-                    <SectionHeading>Education</SectionHeading>
+                    <SectionHeading>{t('education')}</SectionHeading>
                     <div className="flex flex-col gap-4">
-                      {DATA.education.map((edu, i) => (
+                      {[0].map((i) => (
                         <div key={i}>
                           <h4
                             style={{
@@ -676,26 +680,15 @@ export default function Resume1() {
                               color: BLUE,
                             }}
                           >
-                            {edu.school}
+                            {t(`eduSchool${i}`)}
                           </h4>
                           <div
                             className="flex items-baseline justify-between gap-2"
                             style={{ fontSize: '14px' }}
                           >
                             <span style={{ color: BLUE, fontWeight: 500 }}>
-                              {edu.degree}
+                              {t(`eduDegree${i}`)}
                             </span>
-                            {edu.period && (
-                              <span
-                                style={{
-                                  color: GREY,
-                                  fontSize: '13px',
-                                  whiteSpace: 'nowrap',
-                                }}
-                              >
-                                {edu.period}
-                              </span>
-                            )}
                           </div>
                         </div>
                       ))}
@@ -713,13 +706,13 @@ export default function Resume1() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <SectionHeading>Languages</SectionHeading>
+              <SectionHeading>{t('languages')}</SectionHeading>
               <div className="flex flex-wrap gap-x-8 gap-y-2">
                 {DATA.languages.map((l, i) => (
                   <span key={i} style={{ fontSize: '15px', color: BLUE }}>
                     <span style={{ fontWeight: 700 }}>{l.lang}</span>
                     <span style={{ color: GREY, marginLeft: '6px', fontSize: '14px' }}>
-                      {l.level}
+                      {i === 0 ? t('native') : t('fluent')}
                     </span>
                   </span>
                 ))}
@@ -734,7 +727,7 @@ export default function Resume1() {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              <SectionHeading>Selected Projects</SectionHeading>
+              <SectionHeading>{t('selectedProjects')}</SectionHeading>
               <div className="flex flex-col gap-6">
                 {DATA.projects.map((proj, i) => (
                   <div key={i} className="flex flex-col gap-1">
@@ -783,12 +776,12 @@ export default function Resume1() {
                           color: BLUE,
                         }}
                       >
-                        {renderText(proj.desc)}
+                        {renderText(t(`projDesc${i}`))}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="flex flex-wrap gap-2">
-                        {proj.tech.map((t, j) => (
+                        {proj.tech.map((techItem, j) => (
                           <span
                             key={j}
                             style={{
@@ -797,13 +790,13 @@ export default function Resume1() {
                               letterSpacing: '0.03em',
                             }}
                           >
-                            {t}
+                            {techItem}
                           </span>
                         ))}
                       </div>
-                      {proj.details && (
+                      {proj.hasDetails && (
                         <button
-                          onClick={() => setSelectedProject(proj)}
+                          onClick={() => setSelectedProject({ proj, index: i })}
                           className="pulse-glow"
                           style={{
                             background: 'none',
@@ -824,7 +817,7 @@ export default function Resume1() {
                             e.currentTarget.style.backgroundColor = 'rgba(59, 107, 158, 0.08)'
                           }}
                         >
-                          More info
+                          {t('moreInfo')}
                         </button>
                       )}
                     </div>
@@ -843,7 +836,7 @@ export default function Resume1() {
             >
               <button
                 onClick={scrollToTop}
-                aria-label="Scroll to top"
+                aria-label={t('scrollToTop')}
                 style={{
                   background: 'none',
                   border: 'none',
@@ -864,7 +857,9 @@ export default function Resume1() {
       <AnimatePresence>
         {selectedProject && (
           <ProjectModal
-            project={selectedProject}
+            project={selectedProject.proj}
+            projIndex={selectedProject.index}
+            t={t}
             onClose={() => setSelectedProject(null)}
           />
         )}
