@@ -63,7 +63,7 @@ export const translations = {
 
     // Project descriptions
     projDesc0:
-      'Financial document processing API. Brought an AI-powered invoice processing system to production readiness.\n\nImproved extraction accuracy from ~60% to 95% on invoices with **1,000+** line items. Eliminated batch failures and built a chunked extraction pipeline for documents up to 45 pages.\n\nTook the system from "client rejected delivery" to production use within **3 weeks**',
+      'Financial document processing API. Brought an AI-powered invoice processing system to production readiness using OCR and LLM-based extraction.\n\nImproved extraction accuracy from ~60% to 95% on invoices with **1,000+** line items. Eliminated batch failures and built a chunked extraction pipeline for documents up to 45 pages.\n\nTook the system from "client rejected delivery" to production use within **3 weeks**',
     projDesc1:
       'An interactive platform allowing users to upload PDFs and chat with them using LLMs. Originally built during university, recently underwent a full architectural overhaul. Read more for details.',
     projDesc2:
@@ -146,7 +146,7 @@ export const translations = {
 
     // Project descriptions
     projDesc0:
-      'API til behandling af finansielle dokumenter. Bragte et AI-drevet fakturabehandlingssystem til produktionsklarhed.\n\nForbedrede udtr\u00e6kningsn\u00f8jagtighed fra ~60% til 95% p\u00e5 fakturaer med **1.000+** linjeposter. Eliminerede batchfejl og byggede en chunket udtr\u00e6kningspipeline til dokumenter p\u00e5 op til 45 sider.\n\nTog systemet fra "klienten afviste leverancen" til produktionsbrug inden for **3 uger**',
+      'API til behandling af finansielle dokumenter. Bragte et AI-drevet fakturabehandlingssystem til produktionsklarhed ved hj\u00e6lp af OCR og LLM-baseret udtr\u00e6kning.\n\nForbedrede udtr\u00e6kningsn\u00f8jagtighed fra ~60% til 95% p\u00e5 fakturaer med **1.000+** linjeposter. Eliminerede batchfejl og byggede en chunket udtr\u00e6kningspipeline til dokumenter p\u00e5 op til 45 sider.\n\nTog systemet fra "klienten afviste leverancen" til produktionsbrug inden for **3 uger**',
     projDesc1:
       'En interaktiv platform hvor brugere kan uploade PDF\u2019er og chatte med dem via LLM\u2019er. Oprindeligt bygget under studiet, gennemgik for nylig en fuld arkitektonisk omstrukturering. L\u00e6s mere for detaljer.',
     projDesc2:
