@@ -57,6 +57,18 @@ const DATA = {
       link: null,
     },
     {
+      name: 'UDRP AI',
+      type: 'work',
+      tech: ['TypeScript', 'LangGraph', 'MS Teams', 'Qdrant', 'PostgreSQL', 'React'],
+      link: 'https://abion.com',
+    },
+    {
+      name: 'FTP Security with inotify',
+      type: 'work',
+      tech: ['Linux', 'inotify', 'FTP', 'Security'],
+      link: 'https://medium.com/@harunabdi8/mitigating-ftp-security-vulnerabilities-with-inotify-on-linux-5bb186a3c358',
+    },
+    {
       name: 'AskPDFs.io',
       type: 'personal',
       hasDetails: true,
@@ -82,22 +94,10 @@ const DATA = {
       link: 'https://dagensland.dk',
     },
     {
-      name: 'UDRP AI',
-      type: 'work',
-      tech: ['TypeScript', 'LangGraph', 'MS Teams', 'Qdrant', 'PostgreSQL', 'React'],
-      link: 'https://abion.com',
-    },
-    {
       name: 'Gift-a-Friend',
       type: 'work',
       tech: ['Shopify', 'React', 'Prisma'],
       link: 'https://apps.shopify.com/gift-a-friend',
-    },
-    {
-      name: 'FTP Security with inotify',
-      type: 'work',
-      tech: ['Linux', 'inotify', 'FTP', 'Security'],
-      link: 'https://medium.com/@harunabdi8/mitigating-ftp-security-vulnerabilities-with-inotify-on-linux-5bb186a3c358',
     },
   ],
 }

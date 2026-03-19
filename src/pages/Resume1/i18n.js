@@ -65,20 +65,20 @@ export const translations = {
     projDesc0:
       'Financial document processing API. Brought an AI-powered invoice processing system to production readiness using OCR and LLM-based extraction.\n\nImproved extraction accuracy from ~60% to 95% on invoices with **1,000+** line items. Eliminated batch failures and built a chunked extraction pipeline for documents up to 45 pages.\n\nTook the system from "client rejected delivery" to production use within **3 weeks**',
     projDesc1:
-      'An interactive platform allowing users to upload PDFs and chat with them using LLMs. Originally built during university, recently underwent a full architectural overhaul. Read more for details.',
-    projDesc2:
-      'An iOS app that displays discounted products in nearby Salling Group stores (Netto, Bilka, F\u00f8tex). Designed for people who struggle to make ends meet, offering a much cheaper alternative by allowing them to shop discounted grocery items first',
-    projDesc3: 'Born from a real problem at work, packaged as an open-source NPM module. Manipulates EXIF data on images to correct orientation, and can be extended to strip GPS coordinates for privacy or remove other sensitive metadata',
-    projDesc4:
-      'A daily guessing game where you guess the country of the day. Built out of a personal interest in geography and a desire to create something simple, free, and quick to play ranging from a few seconds to a couple of minutes. The game has had over **2,000 visitors**',
-    projDesc5:
       'AI-powered legal drafting platform for domain name dispute lawyers. Multi-stage LangGraph agent conducts structured interviews, performs WHOIS lookups, retrieves precedent cases via RAG, and generates court-ready DOCX complaints, delivered through a Microsoft Teams bot.\n\nBuilt with AES-256-GCM encryption at rest, full PostgreSQL audit trail, and a React admin dashboard for cost monitoring and document ingestion.',
-    projDesc6: 'Referral Shopify plugin created for Cana Care, a multimillion DKK shop',
-    projDesc7:
+    projDesc2:
       'Developed a solution to enhance FTP security for legacy systems using inotify on Linux for secure, real-time file monitoring. [Wrote an article about the approach on Medium](https://medium.com/@harunabdi8/mitigating-ftp-security-vulnerabilities-with-inotify-on-linux-5bb186a3c358)',
+    projDesc3:
+      'An interactive platform allowing users to upload PDFs and chat with them using LLMs. Originally built during university, recently underwent a full architectural overhaul. Read more for details.',
+    projDesc4:
+      'An iOS app that displays discounted products in nearby Salling Group stores (Netto, Bilka, F\u00f8tex). Designed for people who struggle to make ends meet, offering a much cheaper alternative by allowing them to shop discounted grocery items first',
+    projDesc5: 'Born from a real problem at work, packaged as an open-source NPM module. Manipulates EXIF data on images to correct orientation, and can be extended to strip GPS coordinates for privacy or remove other sensitive metadata',
+    projDesc6:
+      'A daily guessing game where you guess the country of the day. Built out of a personal interest in geography and a desire to create something simple, free, and quick to play ranging from a few seconds to a couple of minutes. The game has had over **2,000 visitors**',
+    projDesc7: 'Referral Shopify plugin created for Cana Care, a multimillion DKK shop',
 
     // Project details (modal)
-    projDetails1:
+    projDetails3:
       "PDF chat platform originally built during university with Next.js, Supabase, and basic OpenAI vector search. Recently underwent a full architectural overhaul.\n\n\u2022 **Separated architecture**: moved from a Next.js monolith to a Vite + React 19 frontend and Python 3.12 + FastAPI backend, enabling independent scaling and access to Python's superior AI/ML ecosystem\n\u2022 **Hybrid RAG pipeline**: replaced single-vector retrieval with dense search + BM25 keyword search (based on a technical paper I read) fused via Reciprocal Rank Fusion, followed by Cohere Rerank 3.5, improving retrieval quality by 20-48%\n\u2022 **Tiered PDF parsing**: auto-escalation from pymupdf4llm (fast path) to IBM Docling (complex layouts) to LlamaParse (scanned docs), replacing a single-parser approach\n\u2022 **Contextual chunking**: structure-aware splitting with LLM-generated context prefixes and parent-child indexing for better retrieval precision\n\u2022 **Multi-LLM support**: Claude, GPT, and open-source models via OpenRouter, replacing single-provider OpenAI lock-in\n\u2022 **Production infrastructure**: Inngest step-function job queue, Cloudflare R2 storage, Stripe metered billing, Better Auth, and Sentry + Axiom observability",
   },
 
@@ -148,20 +148,20 @@ export const translations = {
     projDesc0:
       'API til behandling af finansielle dokumenter. Bragte et AI-drevet fakturabehandlingssystem til produktionsklarhed ved hj\u00e6lp af OCR og LLM-baseret udtr\u00e6kning.\n\nForbedrede udtr\u00e6kningsn\u00f8jagtighed fra ~60% til 95% p\u00e5 fakturaer med **1.000+** linjeposter. Eliminerede batchfejl og byggede en chunket udtr\u00e6kningspipeline til dokumenter p\u00e5 op til 45 sider.\n\nTog systemet fra "klienten afviste leverancen" til produktionsbrug inden for **3 uger**',
     projDesc1:
-      'En interaktiv platform hvor brugere kan uploade PDF\u2019er og chatte med dem via LLM\u2019er. Oprindeligt bygget under studiet, gennemgik for nylig en fuld arkitektonisk omstrukturering. L\u00e6s mere for detaljer.',
-    projDesc2:
-      'En iOS-app der viser nedsatte produkter i n\u00e6rliggende Salling Group-butikker (Netto, Bilka, F\u00f8tex). Designet til folk der har sv\u00e6rt ved at f\u00e5 enderne til at m\u00f8des, og tilbyder et langt billigere alternativ ved at lade dem handle nedsatte dagligvarer f\u00f8rst',
-    projDesc3: 'Udsprunget af et reelt problem p\u00e5 arbejdet, pakket som et open source NPM-modul. Manipulerer EXIF-data p\u00e5 billeder for at rette orientering, og kan udvides til at fjerne GPS-koordinater af hensyn til privatliv eller fjerne andre f\u00f8lsomme metadata',
-    projDesc4:
-      'Et dagligt g\u00e6ttespil hvor man g\u00e6tter dagens land. Bygget ud af en personlig interesse i geografi og et \u00f8nske om at skabe noget simpelt, gratis og hurtigt at spille, fra f\u00e5 sekunder til et par minutter. Spillet har haft over **2.000 bes\u00f8gende**',
-    projDesc5:
       'AI-drevet juridisk udkastplatform til dom\u00e6netvistadvokater. Multi-stage LangGraph-agent udf\u00f8rer strukturerede interviews, WHOIS-opslag, henter pr\u00e6cedenssager via RAG og genererer retsklare DOCX-klager, leveret via en Microsoft Teams-bot.\n\nBygget med AES-256-GCM-kryptering, fuld PostgreSQL-auditlog og et React-admin-dashboard til omkostningsoverv\u00e5gning og dokumentindtagelse.',
-    projDesc6: 'Referral Shopify-plugin lavet til Cana Care, en butik med millionomsætning i DKK',
-    projDesc7:
+    projDesc2:
       'Udviklede en l\u00f8sning til at forbedre FTP-sikkerheden for legacy-systemer ved hj\u00e6lp af inotify p\u00e5 Linux til sikker filovervågning i realtid. [Skrev en artikel om tilgangen p\u00e5 Medium](https://medium.com/@harunabdi8/mitigating-ftp-security-vulnerabilities-with-inotify-on-linux-5bb186a3c358)',
+    projDesc3:
+      'En interaktiv platform hvor brugere kan uploade PDF\u2019er og chatte med dem via LLM\u2019er. Oprindeligt bygget under studiet, gennemgik for nylig en fuld arkitektonisk omstrukturering. L\u00e6s mere for detaljer.',
+    projDesc4:
+      'En iOS-app der viser nedsatte produkter i n\u00e6rliggende Salling Group-butikker (Netto, Bilka, F\u00f8tex). Designet til folk der har sv\u00e6rt ved at f\u00e5 enderne til at m\u00f8des, og tilbyder et langt billigere alternativ ved at lade dem handle nedsatte dagligvarer f\u00f8rst',
+    projDesc5: 'Udsprunget af et reelt problem p\u00e5 arbejdet, pakket som et open source NPM-modul. Manipulerer EXIF-data p\u00e5 billeder for at rette orientering, og kan udvides til at fjerne GPS-koordinater af hensyn til privatliv eller fjerne andre f\u00f8lsomme metadata',
+    projDesc6:
+      'Et dagligt g\u00e6ttespil hvor man g\u00e6tter dagens land. Bygget ud af en personlig interesse i geografi og et \u00f8nske om at skabe noget simpelt, gratis og hurtigt at spille, fra f\u00e5 sekunder til et par minutter. Spillet har haft over **2.000 bes\u00f8gende**',
+    projDesc7: 'Referral Shopify-plugin lavet til Cana Care, en butik med millionomsætning i DKK',
 
     // Project details (modal)
-    projDetails1:
+    projDetails3:
       'PDF-chatplatform oprindeligt bygget under studiet med Next.js, Supabase og simpel OpenAI-vektors\u00f8gning. Gennemgik for nylig en fuld arkitektonisk omstrukturering.\n\n\u2022 **Separeret arkitektur**: gik fra en Next.js-monolit til en Vite + React 19-frontend og Python 3.12 + FastAPI-backend, hvilket muligg\u00f8r uafh\u00e6ngig skalering og adgang til Pythons overlegne AI/ML-\u00f8kosystem\n\u2022 **Hybrid RAG-pipeline**: erstattede enkelt vektorhentning med t\u00e6t s\u00f8gning + BM25-n\u00f8gleordss\u00f8gning (baseret p\u00e5 en teknisk artikel jeg l\u00e6ste) fusioneret via Reciprocal Rank Fusion, efterfulgt af Cohere Rerank 3.5, hvilket forbedrede hentningskvaliteten med 20-48%\n\u2022 **Lagdelt PDF-parsing**: auto-eskalering fra pymupdf4llm (hurtig sti) til IBM Docling (komplekse layouts) til LlamaParse (scannede dokumenter), som erstatter en enkelt-parser-tilgang\n\u2022 **Kontekstuel chunking**: strukturbevidst opdeling med LLM-genererede kontekstpr\u00e6fikser og parent-child-indeksering for bedre hentningspr\u00e6cision\n\u2022 **Multi-LLM-support**: Claude, GPT og open source-modeller via OpenRouter, erstatter l\u00e5sning til \u00e9n udbyder (OpenAI)\n\u2022 **Produktionsinfrastruktur**: Inngest step-function jobk\u00f8, Cloudflare R2-lagring, Stripe forbrugsfakturering, Better Auth og Sentry + Axiom observability',
   },
 }
