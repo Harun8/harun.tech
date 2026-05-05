@@ -20,8 +20,16 @@ const styles = `
     padding-bottom: 1px;
   }
   .project .back:hover { color: #2a1f0f; border-bottom-color: #c9bea3; }
-  .project h1 {
+  .project .title {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.75rem;
     margin: 0 0 1.5rem;
+    flex-wrap: wrap;
+  }
+  .project h1 {
+    margin: 0;
     font-size: 13px;
     font-weight: 500;
   }
@@ -38,6 +46,16 @@ const styles = `
     font-size: 13px;
   }
   .project .live:hover { border-bottom-color: #2a1f0f; }
+  .project .thumb {
+    width: min(28rem, 100vw - 3rem);
+    margin: 0 auto 2.5rem;
+    border: 1px solid #e1d8c2;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #ebe2cc;
+    line-height: 0;
+  }
+  .project .thumb img { display: block; width: 100%; height: auto; }
 `
 
 export default function Exifm() {
@@ -59,12 +77,17 @@ export default function Exifm() {
     <div className="project">
       <Link to="/" className="back">← back</Link>
 
-      <h1>exifm</h1>
-      <p className="lede">A small open-source utility I publish on the side. A tiny Node.js tool for safely setting JPEG EXIF orientation and optionally stripping GPS metadata.</p>
+      <div className="title">
+        <h1>exifm</h1>
+        <a className="live" href="https://www.npmjs.com/package/exifm" target="_blank" rel="noreferrer">
+          npm →
+        </a>
+      </div>
+      <p className="lede">A tiny Node.js utility tool for safely setting JPEG EXIF orientation and optionally stripping GPS metadata.</p>
 
-      <a className="live" href="https://www.npmjs.com/package/exifm" target="_blank" rel="noreferrer">
-        view on npm →
-      </a>
+      <div className="thumb">
+        <img src="/projects/exifm-thumb.jpg" alt="exifm article thumbnail" />
+      </div>
     </div>
   )
 }

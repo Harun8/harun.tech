@@ -1,5 +1,28 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
+
+type Item = { to: string; label: string; external?: boolean }
+type Mode = 'personal' | 'work'
+
+const MODE_KEY = 'harun-home-project-mode'
+
+const personal: Item[] = [
+  { to: '/projects/askpdfs', label: 'askpdfs.io' },
+  { to: '/projects/billigbid', label: 'billigbid' },
+  { to: '/projects/veya', label: 'veya' },
+  { to: '/projects/dagensland', label: 'dagensland.dk' },
+  { to: '/projects/exifm', label: 'exifm' },
+  { to: '/projects/deepcast', label: 'deepcast' },
+  { to: '/resume', label: 'resume', external: true },
+]
+
+const work: Item[] = [
+  { to: '/projects/abion', label: 'abion it' },
+  { to: '/projects/clevercost', label: 'clevercost' },
+  { to: '/projects/wordworks', label: 'wordworks' },
+  { to: '/projects/dovento', label: 'dovento' },
+  { to: '/projects/klimator', label: 'klimator' },
+]
 
 const styles = `
   html, body {
@@ -20,8 +43,8 @@ const styles = `
   .home-card .brace-mark {
     position: absolute;
     right: calc(100% + 0.5rem);
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0.1rem;
+    bottom: 0.1rem;
     display: flex;
     align-items: center;
     gap: 0.4rem;
@@ -32,11 +55,12 @@ const styles = `
     font-size: 12px;
     line-height: 1;
     letter-spacing: 0.04em;
+    white-space: nowrap;
   }
   .home-card .brace-mark svg {
     display: block;
     width: 22px;
-    height: auto;
+    height: 100%;
     color: #2a1f0f;
     opacity: 0.55;
   }
@@ -62,9 +86,40 @@ const styles = `
   }
   .home-card .contact a:hover { color: #2a1f0f; }
   .home-card .contact svg { width: 16px; height: 16px; display: block; }
+  .home-card .toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 1.25rem;
+  }
+  .home-card .toggle button {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: #a89977;
+    font: inherit;
+    cursor: pointer;
+    transition: color 120ms ease;
+  }
+  .home-card .toggle button:hover { color: #2a1f0f; }
+  .home-card .toggle button.active { color: #2a1f0f; }
+  .home-card .toggle .sep { color: #c9bea3; user-select: none; }
 `
 
 export default function Home() {
+  const [mode, setMode] = useState<Mode>(() => {
+    if (typeof window === 'undefined') return 'personal'
+    return window.localStorage.getItem(MODE_KEY) === 'work' ? 'work' : 'personal'
+  })
+  const items = mode === 'personal' ? personal : work
+
+  const selectMode = (nextMode: Mode) => {
+    setMode(nextMode)
+    window.localStorage.setItem(MODE_KEY, nextMode)
+  }
+
   useEffect(() => {
     const prevTitle = document.title
     document.title = 'Harun Abdi'
@@ -82,22 +137,42 @@ export default function Home() {
   return (
     <div className="home-card">
       <h1>Harun Abdi</h1>
-      <p>software engineer. some of my projects below.</p>
+      <p>software engineer. i just love building things</p>
+      <div className="toggle" role="tablist" aria-label="Project type">
+        <button
+          role="tab"
+          aria-selected={mode === 'personal'}
+          className={mode === 'personal' ? 'active' : ''}
+          onClick={() => selectMode('personal')}
+        >
+          personal
+        </button>
+        <span className="sep" aria-hidden="true">·</span>
+        <button
+          role="tab"
+          aria-selected={mode === 'work'}
+          className={mode === 'work' ? 'active' : ''}
+          onClick={() => selectMode('work')}
+        >
+          work
+        </button>
+      </div>
       <div className="projects">
         <span className="brace-mark" aria-hidden="true">
           <span className="label">projects</span>
-          <svg viewBox="0 0 16 140" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M13 4 C 5 7, 4 14, 4.5 30 C 5 50, 5 60, 5 66 C 5 70, 3 72, 1.5 72 C 3 72, 5 74, 5 78 C 5 84, 5 94, 4.5 110 C 4 126, 5 134, 13 137" />
+          <svg viewBox="0 0 16 140" preserveAspectRatio="none" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke">
+            <path d="M13 4 C 5 7, 4 14, 4.5 30 C 5 50, 5 60, 5 66 C 5 70, 3 72, 1.5 72 C 3 72, 5 74, 5 78 C 5 84, 5 94, 4.5 110 C 4 126, 5 134, 13 137" vectorEffect="non-scaling-stroke" />
           </svg>
         </span>
         <ul>
-          <li><Link to="/projects/askpdfs">askpdfs.io</Link></li>
-          <li><Link to="/projects/billigbid">billigbid</Link></li>
-          <li><Link to="/projects/veya">veya</Link></li>
-          <li><Link to="/projects/dagensland">dagensland.dk</Link></li>
-          <li><Link to="/projects/exifm">exifm</Link></li>
-          <li><Link to="/projects/deepcast">deepcast</Link></li>
-          <li><a href="/resume">resume</a></li>
+          {items.map((item) => (
+            <li key={item.to}>
+              {item.external
+                ? <a href={item.to}>{item.label}</a>
+                : <Link to={item.to}>{item.label}</Link>
+              }
+            </li>
+          ))}
         </ul>
       </div>
       <p><a href="mailto:harunabdi8@gmail.com">harunabdi8@gmail.com</a></p>

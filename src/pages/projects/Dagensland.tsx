@@ -20,8 +20,16 @@ const styles = `
     padding-bottom: 1px;
   }
   .project .back:hover { color: #2a1f0f; border-bottom-color: #c9bea3; }
-  .project h1 {
+  .project .title {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.75rem;
     margin: 0 0 1.5rem;
+    flex-wrap: wrap;
+  }
+  .project h1 {
+    margin: 0;
     font-size: 13px;
     font-weight: 500;
   }
@@ -29,6 +37,23 @@ const styles = `
     margin: 0 auto 3rem;
     color: #6b5840;
     max-width: 30rem;
+  }
+  .project .media {
+    width: min(56rem, 100vw - 3rem);
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 2.5rem;
+    border: 1px solid #e1d8c2;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #ebe2cc;
+    line-height: 0;
+  }
+  .project .media video,
+  .project .media img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
   .project .live {
     color: #2a1f0f;
@@ -59,12 +84,25 @@ export default function Dagensland() {
     <div className="project">
       <Link to="/" className="back">← back</Link>
 
-      <h1>dagensland.dk</h1>
-      <p className="lede">A Wordle/Wørdle inspired geography game. Grown to ~3,000 unique monthly visitors.</p>
+      <div className="title">
+        <h1>dagensland.dk</h1>
+        <a className="live" href="https://dagensland.dk" target="_blank" rel="noreferrer">
+          see it live →
+        </a>
+      </div>
+      <p className="lede">A Wordle/Wørdle inspired geography game. Over 3,500 unique visitors so far.</p>
 
-      <a className="live" href="https://dagensland.dk" target="_blank" rel="noreferrer">
-        see it live →
-      </a>
+      <div className="media">
+        <video
+          src="/projects/dagensland-demo.mp4"
+          poster="/projects/dagensland-demo-poster.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      </div>
     </div>
   )
 }

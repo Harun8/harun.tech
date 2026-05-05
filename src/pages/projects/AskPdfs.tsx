@@ -20,8 +20,16 @@ const styles = `
     padding-bottom: 1px;
   }
   .project .back:hover { color: #2a1f0f; border-bottom-color: #c9bea3; }
-  .project h1 {
+  .project .title {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.75rem;
     margin: 0 0 1.5rem;
+    flex-wrap: wrap;
+  }
+  .project h1 {
+    margin: 0;
     font-size: 13px;
     font-weight: 500;
   }
@@ -78,7 +86,12 @@ export default function AskPdfs() {
     <div className="project">
       <Link to="/" className="back">← back</Link>
 
-      <h1>askpdfs.io</h1>
+      <div className="title">
+        <h1>askpdfs.io</h1>
+        <a className="live" href="https://askpdfs.io" target="_blank" rel="noreferrer">
+          see it live →
+        </a>
+      </div>
       <p className="lede">A chat interface for PDFs. Hybrid retrieval, tiered parsing, and multi-LLM routing. Built for documents that don't fit in a context window.</p>
 
       <div className="media">
@@ -92,10 +105,6 @@ export default function AskPdfs() {
           preload="metadata"
         />
       </div>
-
-      <a className="live" href="https://askpdfs.io" target="_blank" rel="noreferrer">
-        see it live →
-      </a>
     </div>
   )
 }

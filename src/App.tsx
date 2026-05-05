@@ -8,6 +8,11 @@ import Billigbid from './pages/projects/Billigbid'
 import Deepcast from './pages/projects/Deepcast'
 import Dagensland from './pages/projects/Dagensland'
 import Exifm from './pages/projects/Exifm'
+import Abion from './pages/projects/Abion'
+import CleverCost from './pages/projects/CleverCost'
+import WordWorks from './pages/projects/WordWorks'
+import Dovento from './pages/projects/Dovento'
+import Klimator from './pages/projects/Klimator'
 
 const Resume1 = lazy(() => import('./pages/Resume1'))
 
@@ -31,6 +36,11 @@ export default function App() {
         <Route path="/projects/deepcast" element={<Deepcast />} />
         <Route path="/projects/dagensland" element={<Dagensland />} />
         <Route path="/projects/exifm" element={<Exifm />} />
+        <Route path="/projects/abion" element={<Abion />} />
+        <Route path="/projects/clevercost" element={<CleverCost />} />
+        <Route path="/projects/wordworks" element={<WordWorks />} />
+        <Route path="/projects/dovento" element={<Dovento />} />
+        <Route path="/projects/klimator" element={<Klimator />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       {import.meta.env.DEV && <Agentation endpoint="http://localhost:4747" />}
