@@ -98,6 +98,25 @@ const styles = `
     color: #a89977;
   }
   .project .tldr p { margin: 0; }
+  .project .demo {
+    margin: -1rem 0 2.5rem;
+  }
+  .project .demo video {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    background: #ebe2cc;
+    box-shadow: 0 1px 0 rgba(42, 31, 15, 0.08), 0 18px 48px rgba(42, 31, 15, 0.08);
+  }
+  .project .demo-points {
+    display: grid;
+    gap: 0.65rem;
+    margin-top: 1.25rem;
+    color: #3a2d18;
+  }
+  .project .demo-points li {
+    margin-bottom: 0;
+  }
 `
 
 export default function Abion() {
@@ -126,13 +145,47 @@ export default function Abion() {
         <aside className="tldr">
           <span className="tldr-label">tldr</span>
           <p>
-            Built a Microsoft Teams bot from scratch that lets a 7-lawyer brand-protection
-            firm draft UDRP domain-dispute complaints by chatting with an AI instead of
-            filling out templates by hand. What used to be a 4 to 6 hour manual drafting
-            process now produces a properly formatted DOCX in minutes, with WHOIS
-            lookups, precedent retrieval, and schema-compliant output baked in.
+            Built a Microsoft Teams AI agent from scratch for a 7-lawyer brand-protection
+            firm to draft UDRP domain-dispute complaints through a structured chat workflow
+            instead of manual template drafting. The agent turns a 4-6 hour drafting process
+            into a minutes-long workflow, automatically collecting case facts, running
+            WHOIS/RDAP lookups, retrieving relevant precedent material, validating the
+            complaint against the UDRP schema, and generating a professionally formatted
+            DOCX bundle ready for lawyer review.
           </p>
         </aside>
+
+        <section className="demo" aria-label="Abion UDRP AI demo">
+          <video
+            src="/projects/abion.mp4"
+            poster="/projects/abion-poster.jpg"
+            controls
+            playsInline
+            preload="metadata"
+          />
+          <ul className="demo-points">
+            <li>
+              Drafts a complete UDRP complaint DOCX with parties, domains, trade mark
+              rights, facts, legal grounds, remedies, certification, and annexes.
+            </li>
+            <li>
+              Structures the legal argument around the three required UDRP elements:
+              confusing similarity, no legitimate interest, and bad-faith registration/use.
+            </li>
+            <li>
+              Produces the lawyer-review bundle: complaint DOCX, issues log, and annex
+              manifest CSV.
+            </li>
+            <li>
+              Validates missing case data, formatting, dates, word limits, and British
+              English before delivery.
+            </li>
+            <li>
+              Tracks evidence, uploaded files, numbered annexes, and WHOIS/RDAP lookup data
+              for registrar and respondent details.
+            </li>
+          </ul>
+        </section>
 
         <h2>What it is</h2>
         <p>

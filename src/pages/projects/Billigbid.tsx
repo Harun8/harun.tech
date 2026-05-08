@@ -113,6 +113,7 @@ export default function Billigbid() {
         <video
           src="/projects/billigbid-demo.mp4"
           poster="/projects/billigbid-demo-poster.jpg"
+          controls
           autoPlay
           muted
           loop

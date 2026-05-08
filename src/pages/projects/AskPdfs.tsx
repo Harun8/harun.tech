@@ -98,6 +98,7 @@ export default function AskPdfs() {
         <video
           src="/projects/askpdfs-chat.mp4"
           poster="/projects/askpdfs-chat-poster.jpg"
+          controls
           autoPlay
           muted
           loop

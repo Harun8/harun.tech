@@ -96,6 +96,7 @@ export default function Dagensland() {
         <video
           src="/projects/dagensland-demo.mp4"
           poster="/projects/dagensland-demo-poster.jpg"
+          controls
           autoPlay
           muted
           loop

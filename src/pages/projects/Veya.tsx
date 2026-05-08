@@ -105,6 +105,7 @@ export default function Veya() {
         <video
           src="/projects/veya-demo.mp4"
           poster="/projects/veya-demo-poster.jpg"
+          controls
           autoPlay
           muted
           loop
